@@ -1,0 +1,99 @@
+Expree JS:
+nodejs  - node js code + application code
+	- bcz of above nodejs server logic is complex.
+	- reducing node code by kepting your application code.
+	  so we going to express js.
+alternative to express js:
+1.node.js
+2.adonis.js(inspired from laravel)
+3.koa
+4.sails.js
+ but mostly express.js used.
+installing express js:
+> npm init -y
+> npm install express  --save (prod.dependency)
+middle ware:
+- in express js all depends on middle ware.
+- middleware contains the code which handle the request.
+- if we get one request then express js passed it to all middleware.
+- in nodejs all url requests handled in this single block but code looks complex.
+how express js work?
+const http
+const server
+server.listen
+the above the three used in nodejs but in express js instead of three
+we can use app.listen(3000) and internally do all the operations.
+express router:
+app.get()  -app.method()
+app.post()
+
+mkdir 01.basics
+npm init
+npm install express --save
+npm install body-parser --save  (to get t)
+npm install  nodemon  (to avoid restart)
+
+middleware: tutorialspoint
+
+var express = require('express');
+var app = express();
+
+//Simple request time logger
+app.use(function(req, res, next){
+   console.log("A new request received at " + Date.now());
+   
+   //This function call is very important. It tells that more processing is
+   //required for the current request and is in the next middleware
+   function route handler.
+   next();
+});
+
+app.listen(3000);
+
+The above middleware is called for every request on the server. So after every request, we will get the following message in the console −
+
+A new request received at 1467267512545
+To restrict it to a specific route (and all its subroutes), provide that route as the first argument of app.use(). For Example,
+
+var express = require('express');
+var app = express();
+
+//Middleware function to log request protocol
+app.use('/things', function(req, res, next){
+   console.log("A request for things received at " + Date.now());
+   next();
+});
+
+// Route handler that sends the response
+app.get('/things', function(req, res){
+   res.send('Things');
+});
+
+app.listen(3000);
+
+middleware mynotes:
+
+app.use((req,res)=>{
+console("First Middleware");
+});
+app.use((req,res)=>{
+console("second Middleware");
+});
+
+for the above middleware program first middleware only printed.
+second middleware is not printed bcz its not called to call that one 
+we use one more parameter in the program
+so prg looks like following:
+
+app.use((req, res,next) => {
+   console.log("First Middleware");
+   next();
+});
+app.use((req, res,next) => {
+   console.log("second Middleware");
+});
+
+note:
+app.use() - this method used for to use as middleware.
+app.get() -  this kind of are router methods.
+app.all() - process all route methods.
